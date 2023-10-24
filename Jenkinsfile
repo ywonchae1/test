@@ -1,18 +1,18 @@
 node {
 def app
 stage('Clone repository') {
-git 'https://github.com/jwpark-sungshin/fork_vs_vfork.git'
+git 'https://github.com/ywonchae1/test'
 }
 stage('Build image') {
-app = docker.build("pjbear/test")
+app = docker.build("ywonchae1/opensource")
 }
 stage('Test image') {
 app.inside {
-sh 'make test'
+sh 'echo 1234'
 }
 }
 stage('Push image') {
-docker.withRegistry('https://registry.hub.docker.com', 'pjbear') {
+docker.withRegistry('https://registry.hub.docker.com', 'ywonchae1') {
 app.push("${env.BUILD_NUMBER}")
 app.push("latest")
 }
